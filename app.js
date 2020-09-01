@@ -21,6 +21,14 @@ const articleSchema ={
 const Article = mongoose.model("Article", articleSchema)
 
 
+app.get("/articles",(req,res)=>{
+  Article.find({},(err,foundArticle)=>{
+    if (!err) {
+      res.send(foundArticle)
+    }
+  })
+})
+
 
 app.listen(3000,err=>{
   console.log("ss")
