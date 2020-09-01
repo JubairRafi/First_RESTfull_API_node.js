@@ -20,7 +20,7 @@ const articleSchema ={
 
 const Article = mongoose.model("Article", articleSchema)
 
-
+////request targeting all article/////
 app.route("/articles")
     .get((req,res)=>{
       Article.find({},(err,foundArticle)=>{
@@ -53,7 +53,18 @@ app.route("/articles")
       })
     });
 
+/////specific articles
 
+app.route("/articles/:articleTitle")
+  .get((req,res)=>{
+    Article.findOne({title:req.params.articleTitle},(err,foundArticle)=>{
+      if(foundArticle){
+        res.send(foundArticle)
+      }else{
+        res.send("no article found")
+      }
+    })
+  })
 
 app.listen(3000,err=>{
   console.log("ss")
