@@ -66,6 +66,18 @@ app.route("/articles/:articleTitle")
     })
   })
 
+  .put((req,res)=>{
+    Article.update(
+      {title:req.params.articleTitle},
+      {title :req.body.title, content : req.body.content},
+      {overwrite :true},(err,foundArticle)=>{
+        if(!err){
+          res.send("updated article")
+        }
+      }
+    )
+  });
+
 app.listen(3000,err=>{
   console.log("ss")
 })
