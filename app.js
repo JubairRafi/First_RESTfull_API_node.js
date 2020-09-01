@@ -29,6 +29,20 @@ app.get("/articles",(req,res)=>{
   })
 })
 
+app.post("/articles",(req,res)=>{
+
+  const newArticle = new Article({
+    title : req.body.title,
+    content:req.body.content
+  })
+  newArticle.save(err=>{
+    if(!err){
+      res.send("successfully added new article")
+    }else{
+      res.send(err)
+    }
+  })
+})
 
 app.listen(3000,err=>{
   console.log("ss")
