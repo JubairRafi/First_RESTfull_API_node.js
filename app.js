@@ -11,6 +11,17 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(express.static("public"))
 
+mongoose.connect("mongodb://localhost:27017/wikiDB",{useNewUrlParser: true, useUnifiedTopology: true })
+
+const articleSchema ={
+  title: String,
+  content: String
+}
+
+const Article = mongoose.model("Article", articleSchema)
+
+
+
 app.listen(3000,err=>{
   console.log("ss")
 })
