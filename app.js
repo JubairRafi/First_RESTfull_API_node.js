@@ -76,6 +76,31 @@ app.route("/articles/:articleTitle")
         }
       }
     )
+  })
+
+  .patch((req,res)=>{
+    Article.update(
+      {title:req.params.articleTitle},
+      {$set : req.body},err=>{
+        if(!err){
+          res.send("patch update")
+        }else{
+          res.send(err)
+        }
+      }
+    )
+  })
+
+  .delete((req,res)=>{
+    Article.deleteOne(
+      {title:req.params.articleTitle},err=>{
+        if(!err){
+          res.send("deleting one article")
+        }else{
+          res.send(err)
+        }
+      }
+    )
   });
 
 app.listen(3000,err=>{
